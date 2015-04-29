@@ -2,6 +2,7 @@ package GameStates;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+
 import Audio.Audio;
 import Entity.Dog;
 import Entity.HUD;
@@ -29,12 +30,12 @@ public class Level1 extends GameState{
 	public void init()
 	{
 		tilemap = new TilesMap(30);
-		tilemap.loadTiles("/Tilesets/tileset4.gif");
-		tilemap.loadMap("/Maps/level4.map");
+		tilemap.loadTiles("/Tilesets/tileset1.gif");
+		tilemap.loadMap("/Maps/level1.map");
 		tilemap.setPosition(0, 0);
 		tilemap.setTween(1);
 		
-		bg = new Background("/Backgrounds/level4.gif", 0.1);
+		bg = new Background("/Backgrounds/level1.gif", 0.1);
 		
 		Lassie = new Dog(tilemap);
 		Lassie.setPosition(100, 200);
@@ -43,6 +44,8 @@ public class Level1 extends GameState{
 		bgMusic.play();
 		
 		hud = new HUD(Lassie);
+		HUD.min = 0;
+		HUD.sec = 30;
 	
 		
 	}
@@ -80,11 +83,15 @@ public class Level1 extends GameState{
 		case KeyEvent.VK_RIGHT:
 			Lassie.setRight(true);
 			break;
-		case KeyEvent.VK_E:
-			Lassie.setGliding(true);
+		case KeyEvent.VK_P:
+			bgMusic.stop();
+			Pause.pauseMenu();
+			bgMusic.play();
+			break;
 		}		
+		
 	}
-	
+
 	public void keyReleased(int r)
 	{
 		switch(r){
@@ -100,8 +107,7 @@ public class Level1 extends GameState{
 		case KeyEvent.VK_RIGHT:
 			Lassie.setRight(false);
 			break;
-		case KeyEvent.VK_E:
-			Lassie.setGliding(false);
+		case KeyEvent.VK_P:
 			break;
 		}
 	}

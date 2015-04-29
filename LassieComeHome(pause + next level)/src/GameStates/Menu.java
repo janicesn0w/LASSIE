@@ -16,7 +16,7 @@ public class Menu extends GameState {
 	private Color titleColor;
 	
 	private int currentChoice = 0;
-	private String[] menu = {"Start","Quit"};
+	private String[] menu = {"Start","Level", "Load", "Quit"};
 	
 	public Menu()
 	{
@@ -69,6 +69,9 @@ public class Menu extends GameState {
 			GameStateManager.setState(GameStateManager.LEVEL1);
 			break;
 		case 1: 
+			GameStateManager.setState(GameStateManager.LEVEL);
+			break;
+		case 2:
 			System.exit(0);
 			break;
 		}
@@ -84,8 +87,9 @@ public class Menu extends GameState {
 		if (p == KeyEvent.VK_DOWN){
 			currentChoice++;
 			if (currentChoice == menu.length)	currentChoice = 0;
-		}	
+		}
 	}
-	
+
+
 	public void keyReleased(int r){}
 }

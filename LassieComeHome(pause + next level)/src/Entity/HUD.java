@@ -6,21 +6,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-public class HUD implements ActionListener {
+public class HUD implements ActionListener{
 	
 	private Font font;
 	public static Timer timer;
 	
-	private static int min;
-	private static int sec;
+	public static int min;
+	public static int sec;
 	public static int time = min + sec;
 	
 	public HUD(Dog p) {
 		timer = new Timer(1000,this);
 		timer.start();
-		
-		HUD.min = 0;
-		HUD.sec = 5;
 	}
 	
 	public void draw(Graphics2D g) {
@@ -31,7 +28,7 @@ public class HUD implements ActionListener {
 		
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e){
 		time = min + sec;
 		if (min != 0 && sec == 0){
 			min--;
