@@ -1,6 +1,5 @@
 package Main;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -17,7 +16,7 @@ import GameStates.GameStateManager;
 @SuppressWarnings("serial")
 public class GameLoop extends JPanel implements Runnable , KeyListener, ActionListener{
 
-	private Thread thread;
+	public static Thread thread;
 	private boolean running;
 			
 	private int fps = 60;
@@ -89,7 +88,6 @@ public class GameLoop extends JPanel implements Runnable , KeyListener, ActionLi
 				e.printStackTrace();
 			}
 		}
-		
 		
 	}
 

@@ -57,8 +57,9 @@ public abstract class Objects extends JPanel {
 	protected boolean down;
 	protected boolean jumping;
 	protected boolean falling;
-	protected boolean dead;
+	public static boolean dead;
 	protected boolean timeUp;
+	protected boolean intersects;
 	protected boolean nextLevel;
 	protected boolean gliding;
 	
@@ -210,11 +211,12 @@ public abstract class Objects extends JPanel {
 	public void setGliding(boolean b) { gliding = b;}
 	public void setDead(boolean b) { dead = b; }
 	public void settimeUp(boolean b) { timeUp = b; }
+	public void setIntersects(boolean b) { intersects = b; }
 	public void nextLevel(boolean b) { nextLevel = b;}
 	
 	public void timeEnd(){
 		if (HUD.timer.isRunning()) ;
-		else settimeUp(true);
+		else if (HUD.sec == 0) settimeUp(true);
 	}
 	
 	public boolean notOnScreen() {

@@ -8,8 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 import Audio.Audio;
-import GameStates.GameStateManager;
-import GameStates.Level1;
+import GameStates.*;
 import Main.MainWindow;
 import Map.TilesMap;
 
@@ -21,13 +20,12 @@ public class Dog extends Objects{
 	private long flinchTimer;
 	
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = {2, 8, 1, 2, 4, 2, 5};
+	private final int[] numFrames = {2, 8, 1, 2};
 	
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
 	private static final int FALLING = 3;
-	private static final int GLIDING = 4;
 	
 	public Dog(TilesMap tilemap)
 	{
@@ -171,21 +169,37 @@ public class Dog extends Objects{
 			if(dy > maxFallSpeed) dy = maxFallSpeed;
 			
 		}
-		if (gliding){
-			if (dy > 0 || dy < 0){
-				dy = glideSpeed;
-			} 
-		}
 	}
 	
 	public void checktimeUp(){
 		if (timeUp){
+			switch (GameStateManager.currentState) {
+			
+			case 2:
 			Level1.bgMusic.stop();
+			break;
+			
+			case 3:
+			Level2.bgMusic.stop();
+			break;
+			
+			case 4:
+			Level3.bgMusic.stop();
+			break;
+			
+			case 5:
+			Level4.bgMusic.stop();
+			break;
+			
+			case 6:
+			Level5.bgMusic.stop();
+			break;
+			}
 			Audio die = new Audio("/SFX/die.mp3");
 			die.play();
 			Object[] options = {"Restart", "Quit"};
 			int n = JOptionPane.showOptionDialog(null,
-				    "Time's up!!!!!",
+				    "Time's up, you have lost the golden time to help the dog to escape.",
 				    "Lassie",
 				    JOptionPane.YES_NO_CANCEL_OPTION,
 				    JOptionPane.INFORMATION_MESSAGE,
@@ -206,12 +220,35 @@ public class Dog extends Objects{
 	
 	public void checkDead(){
 		if (dead) {
+			
+			switch (GameStateManager.currentState) {
+			
+			case 2:
 			Level1.bgMusic.stop();
+			break;
+			
+			case 3:
+			Level2.bgMusic.stop();
+			break;
+			
+			case 4:
+			Level3.bgMusic.stop();
+			break;
+			
+			case 5:
+			Level4.bgMusic.stop();
+			break;
+			
+			case 6:
+			Level5.bgMusic.stop();
+			break;
+			}
+			
 			Audio die = new Audio("/SFX/die.mp3");
 			die.play();
 			Object[] options = {"Restart", "Quit"};
 			int n = JOptionPane.showOptionDialog(null,
-				    "You Killed LASSIE!!!!",
+				    "You've killed Lassie.",
 				    "Lassie",
 				    JOptionPane.YES_NO_CANCEL_OPTION,
 				    JOptionPane.INFORMATION_MESSAGE,
@@ -226,20 +263,40 @@ public class Dog extends Objects{
 			case 1:
 				System.exit(0);
 				break;
-			
 			}
-			
+			}
+
 		}
-	}
 		
 	public void checkLevel(){
 		if (nextLevel){
+			switch (GameStateManager.currentState) {
+			
+			case 2:
 			Level1.bgMusic.stop();
+			break;
+			
+			case 3:
+			Level2.bgMusic.stop();
+			break;
+			
+			case 4:
+			Level3.bgMusic.stop();
+			break;
+			
+			case 5:
+			Level4.bgMusic.stop();
+			break;
+			
+			case 6:
+			Level5.bgMusic.stop();
+			break;
+			}
 			Audio nextlevel = new Audio("/SFX/nextlevel.mp3");
 			nextlevel.play();
-			Object[] options = {"Quit"};
+			Object[] options = {"Next Level", "Restart Level", "Quit"};
 			int n = JOptionPane.showOptionDialog(MainWindow.window,
-				    "Next Level is under construction,Happy ProtoType!!",
+				    "You have completed the level in time.",
 				    "Lassie",
 				    JOptionPane.CLOSED_OPTION,
 				    JOptionPane.INFORMATION_MESSAGE,
@@ -248,13 +305,20 @@ public class Dog extends Objects{
 				    options[0]);
 			
 			switch (n){
-				case 0:
+			case 0:
+				GameStateManager.setState(GameStateManager.currentState+1);
+				break;
+			case 1:
+				GameStateManager.setState(GameStateManager.currentState);
+				break;
+			case 2:
 				System.exit(0);
 				break;
 			}
+			}
 		}
-			
-	}
+	
+	
 		
 	public void update() 
 	{
@@ -262,19 +326,12 @@ public class Dog extends Objects{
 		timeEnd();
 		checkDead();
 		checkLevel();
+		checktimeUp();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
 		if(dy >0){
-			if(gliding) {
-					if(currentAction != GLIDING) {
-						currentAction = GLIDING;
-						animation.setFrames(sprites.get(GLIDING));
-						animation.setDelay(100);
-						width = 30;
-					}
-			}
-			else if(currentAction != FALLING) {
+			if(currentAction != FALLING) {
 				currentAction = FALLING;
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
@@ -306,7 +363,6 @@ public class Dog extends Objects{
 				width = 30;
 			}
 		}
-		
 		animation.update();
 		
 		
@@ -314,8 +370,7 @@ public class Dog extends Objects{
 		if(right) facingRight = true;
 		if(left) facingRight = false;
 		
-		}
-		
+	}
 }
 
 
