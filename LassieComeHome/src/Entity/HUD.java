@@ -24,6 +24,7 @@ public class HUD implements ActionListener{
 		
 		g.setFont(font);
 		g.setColor(Color.BLACK);
+		g.drawString("P: Pause", 0, 10);
 		g.drawString("Time: "+min+":"+sec, 250, 10);
 		
 	}

@@ -16,8 +16,6 @@ import Map.TilesMap;
 public class Dog extends Objects{
 	
 	private Audio sfx;
-	private boolean flinching;
-	private long flinchTimer;
 	
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {2, 8, 1, 2};
@@ -43,7 +41,6 @@ public class Dog extends Objects{
 		maxFallSpeed = 4.0;
 		jumpStart = -4.8;
 		stopJumpSpeed = 0.3;
-		glideSpeed = 0.8;
 				
 		facingRight = true;
 				
@@ -55,7 +52,7 @@ public class Dog extends Objects{
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 7; i++) {
+			for(int i = 0; i < 4; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
@@ -90,14 +87,6 @@ public class Dog extends Objects{
 
 	public void draw(Graphics2D g) {
 		setMapPosition();
-		
-		if(flinching) {
-			long elapsed =
-				(System.nanoTime() - flinchTimer) / 1000000;
-			if(elapsed / 100 % 2 == 0) {
-				return;
-			}
-		}
 		
 		if(facingRight) {
 			g.drawImage(

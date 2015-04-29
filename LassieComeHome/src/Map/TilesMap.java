@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
+import Entity.Bone;
 import Entity.Dog;
 import Main.GameLoop;
 import Map.Tile;
@@ -15,6 +16,7 @@ import Map.Tile;
 public class TilesMap {
 	
 	Dog Lassie;
+	Bone bone;
 	
 	private double xpos;
 	private double ypos;
