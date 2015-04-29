@@ -107,8 +107,6 @@ public class Level1 extends GameState{
 		case KeyEvent.VK_RIGHT:
 			Lassie.setRight(false);
 			break;
-		case KeyEvent.VK_P:
-			break;
 		}
 	}
 

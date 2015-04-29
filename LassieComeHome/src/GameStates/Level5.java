@@ -38,7 +38,7 @@ public class Level5 extends GameState{
 		bg = new Background("/Backgrounds/level5.gif", 0.1);
 		
 		Lassie = new Dog(tilemap);
-		Lassie.setPosition(100, 200);
+		Lassie.setPosition(100, 100);
 		
 		bgMusic = new Audio("/Music/level1.mp3");
 		bgMusic.play();

@@ -243,7 +243,7 @@ public class Dog extends Objects{
 			Level5.bgMusic.stop();
 			break;
 			}
-			
+			HUD.timer.stop();
 			Audio die = new Audio("/SFX/die.mp3");
 			die.play();
 			Object[] options = {"Restart", "Quit"};
@@ -259,6 +259,7 @@ public class Dog extends Objects{
 			switch (n){
 			case 0:
 				GameStateManager.setState(GameStateManager.currentState);
+				Objects.dead = false;
 				break;
 			case 1:
 				System.exit(0);
@@ -292,6 +293,7 @@ public class Dog extends Objects{
 			Level5.bgMusic.stop();
 			break;
 			}
+			HUD.timer.stop();
 			Audio nextlevel = new Audio("/SFX/nextlevel.mp3");
 			nextlevel.play();
 			Object[] options = {"Next Level", "Restart Level", "Quit"};

@@ -72,6 +72,9 @@ public class Menu extends GameState {
 			GameStateManager.setState(GameStateManager.LEVEL);
 			break;
 		case 2:
+			Load.load();
+			break;
+		case 3:
 			System.exit(0);
 			break;
 		}

@@ -14,8 +14,11 @@ public class Level extends GameState{
 	private Font titleFont;
 	private Font menuFont;
 	private Color titleColor;
+	private Color fadeColor;
+	private int lastState = Load.load();
 	
 	private int currentChoice = 0;
+	
 	private String[] menu = {"1","2", "3", "4", "5"};
 	
 	public Level()
@@ -31,6 +34,7 @@ public class Level extends GameState{
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
+			fadeColor = new Color(96,96,96);
 			
 			menuFont = new Font("Arial", Font.PLAIN, 12);
 		}
@@ -56,6 +60,7 @@ public class Level extends GameState{
 		g.setFont(menuFont);
 		for (int counter=0; counter < menu.length; counter++){
 			if (counter == currentChoice) g.setColor(Color.GREEN);
+			else if (Integer.parseInt(menu[counter]) > lastState - 1)g.setColor(fadeColor);
 			else g.setColor(Color.BLACK);
 			g.drawString(menu[counter], 145, 140 + counter * 15);
 		}
@@ -87,11 +92,11 @@ public class Level extends GameState{
 		if (p == KeyEvent.VK_ENTER)	select();
 		if (p == KeyEvent.VK_UP){
 			currentChoice--;
-			if (currentChoice <0)	currentChoice = menu.length - 1;
+			if (currentChoice <0)	currentChoice = lastState - 2;
 		}
 		if (p == KeyEvent.VK_DOWN){
 			currentChoice++;
-			if (currentChoice == menu.length)	currentChoice = 0;
+			if (currentChoice > lastState - 2)	currentChoice = 0;
 		}	
 	}
 	
