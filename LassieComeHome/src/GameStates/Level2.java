@@ -47,6 +47,7 @@ public class Level2 extends GameState{
 		HUD.min = 0;
 		HUD.sec = 50;
 		
+		Save.save();
 	}
 
 	

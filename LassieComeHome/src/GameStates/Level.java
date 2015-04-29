@@ -89,7 +89,10 @@ public class Level extends GameState{
 	
 	public void keyPressed(int p)
 	{
-		if (p == KeyEvent.VK_ENTER)	select();
+		if (p == KeyEvent.VK_ENTER)	{
+			select();
+			Menu.bgMusic.stop();
+		}
 		if (p == KeyEvent.VK_UP){
 			currentChoice--;
 			if (currentChoice <0)	currentChoice = lastState - 2;
@@ -98,6 +101,9 @@ public class Level extends GameState{
 			currentChoice++;
 			if (currentChoice > lastState - 2)	currentChoice = 0;
 		}	
+		if (p == KeyEvent.VK_ESCAPE){
+			GameStateManager.setState(GameStateManager.MENU);
+		}
 	}
 	
 	public void keyReleased(int r){}

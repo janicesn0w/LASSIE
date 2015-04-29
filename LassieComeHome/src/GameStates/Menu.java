@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import Audio.Audio;
 import Map.Background;
 
 public class Menu extends GameState {
@@ -15,8 +16,10 @@ public class Menu extends GameState {
 	private Font menuFont;
 	private Color titleColor;
 	
+	public static Audio bgMusic;
+	
 	private int currentChoice = 0;
-	private String[] menu = {"Start","Level", "Load", "Quit"};
+	private String[] menu = {"Start","Level", "Quit"};
 	
 	public Menu()
 	{
@@ -28,6 +31,9 @@ public class Menu extends GameState {
 		try{
 			bg = new Background("/Backgrounds/menubg.gif", 1);
 			bg.animation(-0.1, 0);
+			
+			bgMusic = new Audio("/Music/menu.mp3");
+			bgMusic.play();
 			
 			titleColor = new Color(128, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
@@ -66,15 +72,13 @@ public class Menu extends GameState {
 	{
 		switch (this.currentChoice){
 		case 0: 
+			bgMusic.stop();
 			GameStateManager.setState(GameStateManager.LEVEL1);
 			break;
 		case 1: 
 			GameStateManager.setState(GameStateManager.LEVEL);
 			break;
 		case 2:
-			Load.load();
-			break;
-		case 3:
 			System.exit(0);
 			break;
 		}

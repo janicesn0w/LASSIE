@@ -64,9 +64,6 @@ public class GameStateManager {
 	
 	public void keyPressed(int p) {
 		gameStates[currentState].keyPressed(p);
-	    if (p == KeyEvent.VK_S){
-	    	Save.save();
-	    }
 	}
 	
 	public void keyReleased(int r) {

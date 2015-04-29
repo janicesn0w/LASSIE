@@ -197,7 +197,7 @@ public class Dog extends Objects{
 			}
 			Audio die = new Audio("/SFX/die.mp3");
 			die.play();
-			Object[] options = {"Restart", "Quit"};
+			Object[] options = {"Restart", "Main Menu"};
 			int n = JOptionPane.showOptionDialog(null,
 				    "Time's up, you have lost the golden time to help the dog to escape.",
 				    "Lassie",
@@ -212,7 +212,7 @@ public class Dog extends Objects{
 				GameStateManager.setState(GameStateManager.currentState);
 				break;
 			case 1:
-				System.exit(0);
+				GameStateManager.setState(GameStateManager.MENU);
 				break;
 			}
 		}
@@ -246,7 +246,7 @@ public class Dog extends Objects{
 			HUD.timer.stop();
 			Audio die = new Audio("/SFX/die.mp3");
 			die.play();
-			Object[] options = {"Restart", "Quit"};
+			Object[] options = {"Restart", "Main Menu"};
 			int n = JOptionPane.showOptionDialog(null,
 				    "You've killed Lassie.",
 				    "Lassie",
@@ -258,11 +258,11 @@ public class Dog extends Objects{
 			
 			switch (n){
 			case 0:
-				GameStateManager.setState(GameStateManager.currentState);
 				Objects.dead = false;
+				GameStateManager.setState(GameStateManager.currentState);
 				break;
 			case 1:
-				System.exit(0);
+				GameStateManager.setState(GameStateManager.MENU);
 				break;
 			}
 			}
@@ -296,7 +296,7 @@ public class Dog extends Objects{
 			HUD.timer.stop();
 			Audio nextlevel = new Audio("/SFX/nextlevel.mp3");
 			nextlevel.play();
-			Object[] options = {"Next Level", "Restart Level", "Quit"};
+			Object[] options = {"Next Level", "Restart Level", "Main Menu"};
 			int n = JOptionPane.showOptionDialog(MainWindow.window,
 				    "You have completed the level in time.",
 				    "Lassie",
@@ -314,7 +314,7 @@ public class Dog extends Objects{
 				GameStateManager.setState(GameStateManager.currentState);
 				break;
 			case 2:
-				System.exit(0);
+				GameStateManager.setState(GameStateManager.MENU);
 				break;
 			}
 			}

@@ -45,7 +45,9 @@ public class Level3 extends GameState{
 		
 		hud = new HUD(Lassie);
 		HUD.min = 1;
-		HUD.sec = 0;
+		HUD.sec = 15;
+		
+		Save.save();
 		
 	}
 

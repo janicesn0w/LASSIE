@@ -9,6 +9,7 @@ public abstract class Pause extends GameState{
 	
 	GameStateManager gsm;
 	
+	@SuppressWarnings("deprecation")
 	public static void pauseMenu(){
 		switch (GameStateManager.currentState) {
 		
@@ -34,7 +35,7 @@ public abstract class Pause extends GameState{
 		}
 		HUD.timer.stop();
 		GameLoop.thread.suspend();
-		Object[] options = {"Resume","Restart", "Quit"};
+		Object[] options = {"Resume","Restart", "Main Menu"};
 		int n = JOptionPane.showOptionDialog(null,
 		    "Paused",
 		    "Lassie",
@@ -55,7 +56,18 @@ public abstract class Pause extends GameState{
 			GameStateManager.setState(GameStateManager.currentState);
 			break;
 		case 2:
-			System.exit(0);
+			GameLoop.thread.resume();
+			GameStateManager.setState(GameStateManager.MENU);
+			switch (GameStateManager.currentState) {
+			
+			case 0:
+			Level1.bgMusic.stop();
+			Level2.bgMusic.stop();
+			Level3.bgMusic.stop();
+			Level4.bgMusic.stop();
+			Level5.bgMusic.stop();
+			break;
+			}
 			break;
 	}
 	}

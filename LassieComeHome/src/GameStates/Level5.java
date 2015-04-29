@@ -40,13 +40,14 @@ public class Level5 extends GameState{
 		Lassie = new Dog(tilemap);
 		Lassie.setPosition(100, 100);
 		
-		bgMusic = new Audio("/Music/level1.mp3");
+		bgMusic = new Audio("/Music/level5.mp3");
 		bgMusic.play();
 		
 		hud = new HUD(Lassie);
-		HUD.min = 0;
-		HUD.sec = 35;
+		HUD.min = 1;
+		HUD.sec = 30;
 		
+		Save.save();
 	}
 
 	
